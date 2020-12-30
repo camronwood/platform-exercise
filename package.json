@@ -1,0 +1,51 @@
+{
+  "name": "platform-exercise",
+  "version": "1.0.0",
+  "description": "## Description",
+  "main": "index.js",
+  "scripts": {
+    "watch": "export NODE_ENV=local && nodemon start-server.js --verbose",
+    "start": "export NODE_ENV=local && node start-server.js",
+    "test": "npx eslint . && nyc mocha ./test/*.js ./test/**/*.js",
+    "lint": "npx eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camronwood/platform-exercise.git"
+  },
+  "keywords": [
+    "fender",
+    "jwt",
+    "auth",
+    "tokens"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/camronwood/platform-exercise/issues"
+  },
+  "homepage": "https://github.com/camronwood/platform-exercise#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "custom-env": "^2.0.1",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "pg": "^8.5.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.6",
+    "chai": "^4.2.0",
+    "eslint": "^7.11.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "mocha": "^8.2.0",
+    "nyc": "^15.1.0",
+    "rewire": "^5.0.0",
+    "sinon": "^9.2.1",
+    "supertest": "^6.0.1"
+  }
+}
