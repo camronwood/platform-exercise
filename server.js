@@ -1,3 +1,8 @@
+// Load dependicies
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const morgan = require('morgan');
+
 // Load env
 require('custom-env').env(true, './config');
 
@@ -18,8 +23,22 @@ app.use(express.json());
 
 // Add body-parser middleware
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Add cookie-parser middleware
+app.use(cookieParser());
+
+// Add request loggin middlware
+app.use(morgan('dev'));
+
+app.use(session({
+  key: 'user_sid',
+  secret: 'thisisafakesecret',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    expires: 600000,
+  },
 }));
 
 // Load the routes

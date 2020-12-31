@@ -1,0 +1,154 @@
+{
+	"info": {
+		"_postman_id": "2cb23cf1-8e98-43d9-8940-70d88d2e961e",
+		"name": "Fender Coding Challange",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"johnrambo@gmail.com\",\n    \"password\": \"bangbang\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://0.0.0.0:80/v1/users/login",
+					"protocol": "https",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "80",
+					"path": [
+						"v1",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Registration",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"John Rambo\",\n    \"username\": \"johnrambo\",\n    \"email\": \"johnrambo@gmail.com\",\n    \"password\": \"bangbang\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://0.0.0.0:80/v1/users/registration",
+					"protocol": "https",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "80",
+					"path": [
+						"v1",
+						"users",
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users Logout",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://0.0.0.0:80/v1/users/logout",
+					"protocol": "https",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "80",
+					"path": [
+						"v1",
+						"users",
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"John Rambo\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://0.0.0.0:80/v1/users",
+					"protocol": "https",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "80",
+					"path": [
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Users Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://0.0.0.0:80/v1/users",
+					"protocol": "https",
+					"host": [
+						"0",
+						"0",
+						"0",
+						"0"
+					],
+					"port": "80",
+					"path": [
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
