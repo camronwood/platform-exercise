@@ -6,18 +6,28 @@ After registration it will allow the user to login using those credentials.
 Endpoints such as update and delete are auth proteced and scoped to the users session only allowing you to update and delete your own user.
 
 # Thought process
-With the need for a logout flow, JWT's did not seem to me to be the way to go with this project. Instead I went with a token flow using a server side sessions. 
+With the need for a logout flow, JWT's did not seem to me to be the way to go with this project. Instead I went with a token flow using a server side sessions tied to session id tokens. 
 To quickly get the prject up, the seesion are only stored in memory and are not persisted to the database. This is not ideal for prodcution as each time the 
 server needs to reboot, all user sessions would be lost.
 
+## Why Node
+I will start with just being up front abotut it. 
+My background for the past few years has been in node, so I am comfortable with it.
+That being said, I am confidiend that for a project like this node + express is a good way to. 
+Node's async nature makes it fast and the ability for epxress to handel routing and middlware for you is a huge plus. 
+
 # Set up
 
-This project assumes that you have nodeJS and Postgres installed on your local box. 
-You will need to update the .env file with yoru database credentials and then run db up script. 
+This project assumes that you have nodeJS and Postgres installed on your local box.
+
+If you have not set up NodeJs check out this page for instructions: [https://nodejs.org/en/](https://nodejs.org/en/)  
+If you have nto set up Postgres, check out this page for instructions: [https://www.robinwieruch.de/postgres-sql-macos-setup](https://www.robinwieruch.de/postgres-sql-macos-setup)
+
+Before you start, will need to update the .env file with yoru database credentials and then run db up script. 
 
     npm run db-up
 
-After everuthing is set up, import the postman collection, start the servers and use post man to hit the endpoints.
+After everything is set up, import the postman collection, start the servers and use post man to hit the endpoints.
 
 See the post man collection for more details.
 
