@@ -6,16 +6,18 @@ const { isLoggedIn } = require('./middleware/session-management');
 const routes = (router) => {
   // USER ROUTES
   router.post('/users/registration', (req, res) => {
+    const { username, email, password } = req.body;
+
     // simple validation
-    if (!req.body.username) {
+    if (!username) {
       res.status(400).json(new ErrorResponse({ message: 'Username Required' }));
     }
 
-    if (!req.body.email) {
+    if (!email) {
       res.status(400).json(new ErrorResponse({ message: 'Email Required' }));
     }
 
-    if (!req.body.password) {
+    if (!password) {
       res.status(400).json(new ErrorResponse({ message: 'Password Required' }));
     }
 
@@ -26,7 +28,7 @@ const routes = (router) => {
       password: req.body.password,
     }).then((user) => {
       req.session.user = user.dataValues;
-      res.status(200).json('Registration Successful');
+      res.status(200).json({ message: 'Registration Successful' });
     })
       .catch((e) => {
         // TODO: we would want to properly report / log errors from
@@ -36,8 +38,16 @@ const routes = (router) => {
   });
 
   router.post('/users/login', (req, res) => {
-    const { email } = req.body;
-    const { password } = req.body;
+    const { email, password } = req.body;
+
+    // simple validation
+    if (!email) {
+      res.status(400).json(new ErrorResponse({ message: 'Username Required' }));
+    }
+
+    if (!password) {
+      res.status(400).json(new ErrorResponse({ message: 'Password Required' }));
+    }
 
     User.findOne({ where: { email } }).then((user) => {
       if (!user) {
@@ -46,7 +56,7 @@ const routes = (router) => {
         res.status(401).json(new ErrorResponse({ message: 'Password not vaild', status: 401, code: 'unautorized' }));
       } else {
         req.session.user = user.dataValues;
-        res.status(200).json('Login Successful');
+        res.status(200).json({ message: 'Login Successful' });
       }
     });
   });
@@ -54,14 +64,17 @@ const routes = (router) => {
   router.get('/users/logout', (req, res) => {
     if (req.session.user && req.cookies.user_sid) {
       res.clearCookie('user_sid');
-      res.status(200).json('Logout Successful');
+      res.status(200).json({ message: 'Logout Successful' });
     } else {
-      res.status(500).json('User is already logged out');
+      res.status(500).json({ message: 'User is already logged out' });
     }
   });
 
   router.put('/users', isLoggedIn, (req, res) => {
-    if (!req.body.name) {
+    const { name } = req.body;
+
+    // simple validation
+    if (!name) {
       res.status(400).json(new ErrorResponse({ message: 'Nothing to update' }));
     }
 
@@ -69,7 +82,7 @@ const routes = (router) => {
       user.update({
         name: req.body.name,
       }).then(() => {
-        res.status(200).json('Update Successful');
+        res.status(200).json({ message: 'Update Successful' });
       }).catch(() => {
         res.status(500).json(new ErrorResponse({ message: 'Update Failed', status: 500, code: 'faild_updadting_user' }));
       });
@@ -79,8 +92,7 @@ const routes = (router) => {
   router.delete('/users', isLoggedIn, (req, res) => {
     User.findOne({ where: { id: req.session.user.id } }).then((user) => {
       user.destroy().then(() => {
-        // TODO: we would want to kill the sesson here after a successful removeal of the record
-        res.status(200).json('Delete Successful');
+        res.status(200).json({ message: 'Delete Successful' });
       }).catch(() => {
         res.status(500).json(new ErrorResponse({ message: 'Delete Failed', status: 500, code: 'faild_deleteing_user' }));
       });

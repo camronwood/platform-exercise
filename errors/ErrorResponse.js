@@ -5,7 +5,7 @@ class ErrorResponse extends Error {
   } = {}, ...params) {
     super(...params);
 
-    this.messages = { message };
+    this.message = message;
     this.status = status;
     this.code = code;
 
